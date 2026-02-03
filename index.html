@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>PharmaBalance - Advanced Drug Discovery Platform</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00d4ff",
+                        "secondary": "#ff6b6b",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#0a0a0a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            min-height: max(884px, 100dvh);
+        }
+
+        .bg-gradient-pharma {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #00d4ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark font-display text-white">
+    <div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Navigation -->
+        <nav
+            class="sticky top-0 z-50 flex items-center bg-background-dark/95 backdrop-blur-xl p-6 justify-between border-b border-slate-800/50 shadow-2xl">
+            <div class="flex items-center gap-4">
+                <!-- PharmaBalance Logo -->
+                <div class="flex items-center gap-3">
+                    <svg width="48" height="48" viewBox="0 0 100 100" class="text-primary">
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#0099cc;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Flask/Beaker Shape -->
+                        <path d="M35 20 L35 35 L25 60 Q25 70 35 70 L65 70 Q75 70 75 60 L65 35 L65 20 Z"
+                            fill="url(#logoGradient)" stroke="none" />
+                        <!-- Liquid inside -->
+                        <path d="M30 45 L70 45 Q70 60 60 60 L40 60 Q30 60 30 45 Z" fill="#00ffaa" opacity="0.7" />
+                        <!-- Bubbles -->
+                        <circle cx="45" cy="50" r="3" fill="#ffffff" opacity="0.8" />
+                        <circle cx="55" cy="55" r="2" fill="#ffffff" opacity="0.6" />
+                        <!-- Flask neck -->
+                        <rect x="45" y="15" width="10" height="10" fill="url(#logoGradient)" />
+                        <rect x="43" y="10" width="14" height="8" rx="2" fill="url(#logoGradient)" />
+                    </svg>
+                    <h2 class="text-white text-2xl font-black leading-tight tracking-tight">
+                        <span class="text-gradient">PharmaBalance</span>
+                    </h2>
+                </div>
+            </div>
+
+            <!-- Center Navigation Links -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home"
+                    class="px-4 py-2 text-white/80 hover:text-white transition-all duration-300 rounded-lg hover:bg-white/5 font-medium">
+                    Home
+                </a>
+                <a href="#research"
+                    class="px-4 py-2 text-white/80 hover:text-white transition-all duration-300 rounded-lg hover:bg-white/5 font-medium">
+                    Research
+                </a>
+                <a href="#about"
+                    class="px-4 py-2 text-white/80 hover:text-white transition-all duration-300 rounded-lg hover:bg-white/5 font-medium">
+                    About
+                </a>
+            </div>
+
+            <!-- Auth Buttons -->
+            <div class="flex gap-3">
+                <button onclick="window.location.href='login.html'"
+                    class="px-6 py-3 text-primary border border-primary/30 rounded-xl hover:bg-primary/10 transition-all duration-300 font-semibold backdrop-blur-sm">
+                    Login
+                </button>
+
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1">
+            <div class="@container">
+                <div class="@[480px]:p-4">
+                    <!-- Hero Section -->
+                    <div class="flex min-h-[700px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-8 text-center relative overflow-hidden"
+                        style='background-image: linear-gradient(rgba(10, 10, 10, 0.85) 0%, rgba(10, 10, 10, 0.7) 100%), url("https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=2070&auto=format&fit=crop");'>
+
+                        <!-- Gradient Overlay for Better Text Readability -->
+                        <div
+                            class="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/20 to-background-dark/40">
+                        </div>
+
+                        <div class="flex flex-col gap-6 max-w-4xl z-10">
+                            <span
+                                class="inline-block self-center px-4 py-2 bg-primary/20 text-primary rounded-full text-sm font-bold uppercase tracking-widest border border-primary/30">
+                                <span class="material-symbols-outlined text-sm mr-2">science</span>
+                                Innovation Hub
+                            </span>
+
+                            <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight">
+                                Your Entire
+                                <span class="block text-gradient">Drug Discovery</span>
+                                <span class="block text-white">Journey</span>
+                            </h1>
+
+                            <p
+                                class="text-slate-300 text-lg md:text-xl font-normal leading-relaxed opacity-90 max-w-2xl mx-auto">
+                                Harness the power of AI-driven serverless architecture for unprecedented pharmaceutical
+                                research capabilities. Accelerate drug efficacy testing with advanced mass balance
+                                optimization.
+                            </p>
+
+                            <div class="flex justify-center mt-8">
+                                <button onclick="window.location.href='login.html'"
+                                    class="min-w-[180px] cursor-pointer flex items-center justify-center rounded-xl h-16 px-8 bg-primary text-background-dark text-lg font-bold transition-all hover:bg-primary/90">
+                                    Start Discovery
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Our Research Section -->
+            <section class="mt-16 px-6" id="research">
+                <div class="flex items-center justify-between mb-10">
+                    <div>
+                        <h2 class="text-white text-4xl font-bold tracking-tight mb-2">Our Research</h2>
+                        <p class="text-slate-400 text-lg">Transforming pharmaceutical discovery with cutting-edge
+                            technology</p>
+                    </div>
+                    <span
+                        class="text-primary text-lg font-semibold cursor-pointer hover:text-primary/80 transition-colors">See
+                        All</span>
+                </div>
+
+                <!-- Research Categories -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                    <!-- Molecular Dynamics -->
+                    <div
+                        class="bg-slate-900/50 border border-slate-800/50 rounded-2xl p-8 backdrop-blur-sm hover:bg-slate-900/70 transition-all">
+                        <div>
+                            <h4 class="text-white text-xl font-bold mb-4">Molecular Dynamics</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">Proprietary algorithms simulating
+                                atomic-level drug interactions in real-time with unprecedented accuracy and precision.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Load Balancing -->
+                    <div
+                        class="bg-slate-900/50 border border-slate-800/50 rounded-2xl p-8 backdrop-blur-sm hover:bg-slate-900/70 transition-all">
+                        <div>
+                            <h4 class="text-white text-xl font-bold mb-4">Load Balancing</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">Advanced serverless architecture
+                                distributing computational tasks for optimal performance and infinite scalability.</p>
+                        </div>
+                    </div>
+
+                    <!-- Mass Balance -->
+                    <div
+                        class="bg-slate-900/50 border border-slate-800/50 rounded-2xl p-8 backdrop-blur-sm hover:bg-slate-900/70 transition-all">
+                        <div>
+                            <h4 class="text-white text-xl font-bold mb-4">Mass Balance</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">Intelligent scoring system combining
+                                efficacy, side effects, and confidence metrics for accurate predictions.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="mt-16 px-6 py-16 bg-slate-900/30" id="about">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-white text-4xl font-bold tracking-tight mb-6">About PharmaBalance</h2>
+                    <p class="text-slate-300 text-lg leading-relaxed">
+                        PharmaBalance is a cutting-edge pharmaceutical research platform that leverages AI-driven
+                        serverless architecture
+                        to revolutionize drug discovery. Our advanced algorithms and mass balance optimization
+                        techniques enable
+                        unprecedented accuracy in drug efficacy testing and molecular analysis.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-slate-900/50 border-t border-slate-800 p-8 pb-12 mt-16">
+            <div class="flex flex-col items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <span class="font-black text-white text-2xl">
+                        <span class="text-gradient">PharmaBalance</span>
+                    </span>
+                </div>
+                <div class="flex gap-8 text-slate-400">
+                    <span
+                        class="material-symbols-outlined hover:text-primary cursor-pointer transition-colors">public</span>
+                    <span
+                        class="material-symbols-outlined hover:text-primary cursor-pointer transition-colors">science</span>
+                    <span
+                        class="material-symbols-outlined hover:text-primary cursor-pointer transition-colors">medication</span>
+                    <span
+                        class="material-symbols-outlined hover:text-primary cursor-pointer transition-colors">hub</span>
+                </div>
+                <p class="text-slate-500 text-sm text-center">© 2026 PharmaBalance. Your All Time Drug Supporter -
+                    Advanced Drug Discovery Platform.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-8 w-full max-w-md mx-4 shadow-2xl">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-white">Welcome Back</h2>
+                <button onclick="closeModal('loginModal')" class="text-slate-400 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400">email</span>
+                        <input type="email" id="loginEmail" required
+                            class="w-full pl-12 pr-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Password</label>
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400">lock</span>
+                        <input type="password" id="loginPassword" required
+                            class="w-full pl-12 pr-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-primary text-background-dark py-3 rounded-lg font-bold hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                    <span>Sign In</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+
+                <p class="text-center text-slate-400 text-sm">
+                    Don't have an account?
+                    <a href="#" onclick="switchToRegister()"
+                        class="text-primary hover:text-primary/80 font-semibold">Create one here</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal"
+        class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="bg-slate-900 border border-slate-700 rounded-2xl p-8 w-full max-w-md mx-4 shadow-2xl">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold text-white">Join PharmaBalance</h2>
+                <button onclick="closeModal('registerModal')" class="text-slate-400 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <form id="registerForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Full Name</label>
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400">person</span>
+                        <input type="text" id="registerName" required
+                            class="w-full pl-12 pr-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Email Address</label>
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400">email</span>
+                        <input type="email" id="registerEmail" required
+                            class="w-full pl-12 pr-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Password</label>
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400">lock</span>
+                        <input type="password" id="registerPassword" required
+                            class="w-full pl-12 pr-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">Confirm Password</label>
+                    <div class="relative">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400">shield</span>
+                        <input type="password" id="confirmPassword" required
+                            class="w-full pl-12 pr-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:border-primary focus:ring-1 focus:ring-primary transition-colors">
+                    </div>
+                </div>
+
+                <button type="submit"
+                    class="w-full bg-secondary text-white py-3 rounded-lg font-bold hover:bg-secondary/90 transition-colors flex items-center justify-center gap-2">
+                    <span>Create Account</span>
+                    <span class="material-symbols-outlined">person_add</span>
+                </button>
+
+                <p class="text-center text-slate-400 text-sm">
+                    Already have an account?
+                    <a href="#" onclick="switchToLogin()" class="text-primary hover:text-primary/80 font-semibold">Sign
+                        in here</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="main.js?v=3.0"></script>
+</body>
+
+</html>

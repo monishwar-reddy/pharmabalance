@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Dashboard - PharmaBalance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="app-styles.css?v=2.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-flask-vial logo-icon"></i>
+            PharmaBalance
+        </div>
+        <li><a href="analysis.html" class="nav-link">Dashboard</a></li>
+        <li><a href="import.html" class="nav-link">Drug Import</a></li>
+        <li><a href="analysis.html" class="nav-link active">Analysis</a></li>
+        <li><a href="bot.html" class="nav-link">Bot</a></li>
+        </ul>
+        <div class="user-menu">
+            <div class="user-profile">
+                <i class="fa-solid fa-circle-user avatar-icon"></i>
+                Dr. Pharma
+            </div>
+            <button class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <header class="hero analysis-hero">
+        <h1>Advanced Drug Analysis Dashboard</h1>
+        <p>Real-time insights, Mass Balance scoring, and comprehensive load balancing analytics for your simulations</p>
+        <a href="#analysis-section" class="btn-primary-gradient">View Analysis</a>
+    </header>
+
+    <main class="main-content" id="analysis-section">
+        <div class="container">
+            <h1>Analysis Dashboard</h1>
+            <p class="page-subtitle">Real-time insights and Mass Balance scoring for your drug simulations</p>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">🧪</div>
+                    <div class="stat-content">
+                        <h3 id="totalDrugs">0</h3>
+                        <p>Total Drugs</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-content">
+                        <h3 id="activeSimulations">0</h3>
+                        <p>Active Simulations</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <h3 id="completedTests">0</h3>
+                        <p>Completed Tests</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-content">
+                        <h3 id="avgConfidence">0%</h3>
+                        <p>Avg Confidence</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <h3>Mass Balance Distribution</h3>
+                    <canvas id="massBalanceChart"></canvas>
+                </div>
+
+                <div class="analysis-card">
+                    <h3>Efficacy vs Side Effects</h3>
+                    <canvas id="efficacyChart"></canvas>
+                </div>
+
+                <div class="analysis-card">
+                    <h3>Load Balancer Performance</h3>
+                    <div class="performance-metrics">
+                        <div class="metric">
+                            <span class="metric-label">CPU Utilization</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <span class="metric-value">75%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Memory Usage</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                            <span class="metric-value">60%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Network I/O</span>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <span class="metric-value">45%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analysis-card">
+                    <h3>Priority Queue Status</h3>
+                    <canvas id="priorityChart"></canvas>
+                </div>
+            </div>
+
+            <div class="detailed-results">
+                <h3>Load Balancing Analysis</h3>
+                <div class="load-balancing-info" id="loadBalancingInfo">
+                    <div class="balancing-stats">
+                        <div class="balancing-card">
+                            <h4>Instance Distribution</h4>
+                            <canvas id="instanceChart" width="300" height="200"></canvas>
+                        </div>
+                        <div class="balancing-card">
+                            <h4>Effective Weight Analysis</h4>
+                            <div id="weightAnalysis">
+                                <p>Calculating effective weights using:
+                                    <code>W<sub>i,d</sub> = w<sub>i</sub> × (I<sub>d</sub> / C<sub>d</sub>) × MB<sub>k</sub></code>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detailed-results">
+                <h3>Detailed Drug Analysis</h3>
+                <div class="results-table-container">
+                    <table class="results-table" id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th>Drug Name</th>
+                                <th>Complexity</th>
+                                <th>Priority</th>
+                                <th>Efficacy</th>
+                                <th>Side Effects</th>
+                                <th>MB Score</th>
+                                <th>Confidence</th>
+                                <th>Assigned Instance</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsTableBody">
+                            <tr class="empty-row">
+                                <td colspan="10">No simulation results available. Import drugs and run simulations
+                                    first.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="export-section">
+                <h3>Export Results</h3>
+                <div class="export-buttons">
+                    <button class="btn btn-secondary" onclick="exportToCSV()">Export CSV</button>
+                    <button class="btn btn-secondary" onclick="exportToJSON()">Export JSON</button>
+                    <button class="btn btn-primary" onclick="generateReport()">Generate Report</button>
+                    <button class="btn btn-secondary" onclick="clearAllData()"
+                        style="background-color: #dc3545; border-color: #dc3545;">Clear All Data</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="simple-footer">
+        <div class="footer-content">
+            <h3>Your All Time Drug Supporter</h3>
+            <p>Empowering pharmaceutical research with advanced serverless technology</p>
+        </div>
+    </footer>
+
+    <script src="analysis.js?v=3.0"></script>
+    <script src="auth-check.js?v=3.0"></script>
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Import - PharmaBalance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="app-styles.css?v=2.0">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-flask-vial logo-icon"></i>
+            PharmaBalance
+        </div>
+        <li><a href="analysis.html" class="nav-link">Dashboard</a></li>
+        <li><a href="import.html" class="nav-link active">Drug Import</a></li>
+        <li><a href="analysis.html" class="nav-link">Analysis</a></li>
+        <li><a href="bot.html" class="nav-link">Bot</a></li>
+        </ul>
+        <div class="user-menu">
+            <div class="user-profile">
+                <i class="fa-solid fa-circle-user avatar-icon"></i>
+                Dr. Pharma
+            </div>
+            <button class="btn-logout">Logout</button>
+        </div>
+    </nav>
+
+    <header class="hero import-hero">
+        <h1>Import & Configure Your Drugs</h1>
+        <p>Upload pharmaceutical compounds and configure simulation parameters for advanced efficacy testing</p>
+        <a href="#import-section" class="btn-primary-gradient">Start Importing</a>
+    </header>
+
+    <main class="main-content" id="import-section">
+        <div class="page-header">
+            <h1>Drug Import & Configuration</h1>
+            <p class="page-subtitle">Import your pharmaceutical compounds for efficacy testing and simulation</p>
+        </div>
+
+        <div class="import-container">
+            <div class="import-grid">
+                <div class="card upload-card">
+                    <h3><i class="fa-solid fa-upload"></i> File Upload</h3>
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <div class="upload-icon">📤</div>
+                            <p>Drag & drop your drug data files here</p>
+                            <p class="upload-formats">Supported: CSV, JSON, XML</p>
+                            <input type="file" id="fileInput" multiple accept=".csv,.json,.xml" style="display: none;">
+                            <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                                Choose Files
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card manual-entry-card">
+                    <h3><i class="fa-solid fa-edit"></i> Manual Entry</h3>
+                    <form class="drug-form" id="drugForm">
+                        <div class="form-group">
+                            <label for="drugName">Drug Name</label>
+                            <input type="text" id="drugName" name="drugName" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="complexity">Complexity Score (1-10)</label>
+                                <input type="number" id="complexity" name="complexity" min="1" max="10" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="priority">Priority Level (1-5)</label>
+                                <input type="number" id="priority" name="priority" min="1" max="5" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="efficacy">Expected Efficacy (%)</label>
+                                <input type="number" id="efficacy" name="efficacy" min="0" max="100" step="0.1"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sideEffects">Side Effects Score (1-10)</label>
+                                <input type="number" id="sideEffects" name="sideEffects" min="1" max="10" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Add Drug</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Data Staging Section -->
+            <section class="uploaded-drugs-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-layer-group"></i> Feature Extraction & Data Staging</h2>
+                </div>
+                <div id="drugsList" class="drugs-list">
+                    <!-- Data will be populated here -->
+                    <div class="empty-state">
+                        <p>No datasets processed yet. Upload a file to begin the extraction layer.</p>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <div class="action-buttons">
+                <button class="btn btn-secondary" onclick="addDemoData()">
+                    <i class="fa-solid fa-flask"></i> Add Demo Drugs
+                </button>
+                <button class="btn btn-secondary" onclick="clearAllDrugs()">
+                    <i class="fa-solid fa-trash"></i> Clear Drugs
+                </button>
+                <button class="btn btn-secondary" onclick="clearAllData()"
+                    style="background-color: var(--danger-red); border-color: var(--danger-red);">
+                    <i class="fa-solid fa-database"></i> Clear All Data
+                </button>
+                <button class="btn btn-primary-gradient" onclick="startSimulation()" id="startSimBtn" disabled>
+                    <i class="fa-solid fa-play"></i> Start Simulation
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="simple-footer">
+        <div class="footer-content">
+            <h3>Your All Time Drug Supporter</h3>
+            <p>Empowering pharmaceutical research with advanced serverless technology</p>
+        </div>
+    </footer>
+
+    <script src="import.js?v=3.0"></script>
+    <script src="auth-check.js"></script>
+</body>
+
+</html>

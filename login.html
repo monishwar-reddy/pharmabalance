@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaBalance | Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        /* --- CSS Variables for Theme Colors --- */
+        :root {
+            --primary-teal: #00d4ff;
+            --primary-blue: #0099cc;
+            --gradient-start: #00d4ff;
+            --gradient-end: #0099cc;
+            --text-dark: #1a202c;
+            --text-gray: #718096;
+            --border-gray: #cbd5e0;
+            --bg-white: #ffffff;
+            --bg-dark: #0a0a0a;
+        }
+
+        /* --- Global Reset & Typography --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            background: var(--bg-dark);
+        }
+
+        /* --- Main Layout --- */
+        .login-container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+
+        /* --- Left Side (Image & Tagline) --- */
+        .login-left {
+            flex: 1;
+            background-image: url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center left;
+            display: flex;
+            align-items: flex-end;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .login-left::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.7) 0%, rgba(10, 10, 10, 0.8) 100%);
+        }
+
+        .tagline {
+            position: relative;
+            font-size: 1.25rem;
+            color: white;
+            font-weight: 500;
+        }
+
+        /* --- Right Side (Form) --- */
+        .login-right {
+            flex: 1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .form-wrapper {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+            justify-content: center;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        .logo-text {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #00d4ff, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Form Elements */
+        .input-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary-teal);
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .remember-me input {
+            accent-color: var(--primary-teal);
+        }
+
+        .btn-secure-access {
+            width: 100%;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 2rem;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-bottom: 1rem;
+        }
+
+        .btn-secure-access:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .divider span {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            padding: 0 1rem;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 0.875rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .google-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Footer - Compliance Badges */
+        .compliance-footer {
+            position: absolute;
+            bottom: 2rem;
+            display: flex;
+            gap: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.75rem;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge-icon {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .badge-separator {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+
+            .login-left {
+                flex: 0 0 250px;
+                padding: 2rem;
+            }
+
+            .login-right {
+                padding: 3rem 2rem;
+            }
+
+            .compliance-footer {
+                position: static;
+                margin-top: 3rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-left">
+            <p class="tagline">Accelerating Drug Discovery Through AI-Driven Serverless Architecture.</p>
+        </div>
+
+        <div class="login-right">
+            <div class="form-wrapper">
+                <div class="logo">
+                    <svg width="48" height="48" viewBox="0 0 100 100" class="logo-icon">
+                        <defs>
+                            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#0099cc;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M35 20 L35 35 L25 60 Q25 70 35 70 L65 70 Q75 70 75 60 L65 35 L65 20 Z"
+                            fill="url(#logoGradient)" stroke="none" />
+                        <path d="M30 45 L70 45 Q70 60 60 60 L40 60 Q30 60 30 45 Z" fill="#00ffaa" opacity="0.7" />
+                        <circle cx="45" cy="50" r="3" fill="#ffffff" opacity="0.8" />
+                        <circle cx="55" cy="55" r="2" fill="#ffffff" opacity="0.6" />
+                        <rect x="45" y="15" width="10" height="10" fill="url(#logoGradient)" />
+                        <rect x="43" y="10" width="14" height="8" rx="2" fill="url(#logoGradient)" />
+                    </svg>
+                    <div class="logo-text">
+                        <span class="text-gradient">PharmaBalance</span>
+                    </div>
+                </div>
+
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="email" class="form-input" placeholder="Email Address" required>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" class="form-input" placeholder="Password" required>
+                    </div>
+                    <label class="remember-me">
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+                    <button type="submit" class="btn-secure-access">Secure Access (Demo Mode)</button>
+                </form>
+
+                <!-- Google Sign-In removed -->
+            </div>
+
+            <!-- Compliance footer removed as per request -->
+        </div>
+    </div>
+
+    <script>
+        // Google Sign-In callback
+        function handleCredentialResponse(response) {
+            console.log("Encoded JWT ID token: " + response.credential);
+
+            // Decode the JWT token to get user info
+            const responsePayload = decodeJwtResponse(response.credential);
+
+            console.log("ID: " + responsePayload.sub);
+            console.log('Full Name: ' + responsePayload.name);
+            console.log('Given Name: ' + responsePayload.given_name);
+            console.log('Family Name: ' + responsePayload.family_name);
+            console.log("Image URL: " + responsePayload.picture);
+            console.log("Email: " + responsePayload.email);
+
+            // Store user info and redirect to dashboard
+            localStorage.setItem('currentUser', JSON.stringify({
+                id: responsePayload.sub,
+                name: responsePayload.name,
+                email: responsePayload.email,
+                picture: responsePayload.picture
+            }));
+
+            // Redirect to main dashboard
+            window.location.href = 'analysis.html';
+        }
+
+        function decodeJwtResponse(token) {
+            var base64Url = token.split('.')[1];
+            var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        }
+
+        function googleSignIn() {
+            // Trigger the Google Sign-In prompt
+            google.accounts.id.prompt();
+        }
+
+        // Regular form submission
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = this.querySelector('input[type="email"]').value;
+            const password = this.querySelector('input[type="password"]').value;
+
+            // For demo purposes, accept any email/password
+            if (email && password) {
+                localStorage.setItem('currentUser', JSON.stringify({
+                    name: email.split('@')[0],
+                    email: email
+                }));
+
+                // Redirect to main dashboard
+                alert('Login Successful! Redirecting to Dashboard...');
+                window.location.href = window.location.origin + '/analysis.html';
+            }
+        });
+
+        // Initialize Google Sign-In is now handled by g_id_onload above
+    </script>
+</body>
+
+</html>
