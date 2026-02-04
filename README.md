@@ -3,13 +3,16 @@
 **Advanced AI-Driven Drug Discovery & Serverless Load Balancing Platform**
 
 PharmaBalance is a cutting-edge web application designed to simulate and visualize the complex process of pharmaceutical drug discovery. It leverages a simulated serverless architecture to demonstrate efficient load balancing, mass balance optimization, and accurate efficacy testing.
+## 🚀 Live Demo
+
+[🔗 Try it out](https://pharmabalance.netlify.app/pharma-main/index.html)
+
 
 ## 🚀 Key Features
 
 *   **🧪 Drug Import & Configuration**: Easily import drug datasets via CSV/JSON or manually configure compound parameters (Complexity, Priority, Expected Efficacy).
 *   **📊 Advanced Analysis Dashboard**: Real-time visualization of simulation results using dynamic charts (Mass Balance Distribution, Efficacy vs. Side Effects, Priority Queue Status).
 *   **⚖️ Serverless Load Balancer Simulation**: A sophisticated simulation engine that routes drug processing tasks to different "instances" based on computed weights, mimicking real-world cloud scaling.
-*   **🤖 AI Pharma Bot**: An integrated chatbot powered by **Google Gemini 1.5 Flash** to answer questions about molecular dynamics, drug interactions, and platform features.
 *   **🔐 Secure Authentication**: Built-in login/register system with session management (simulated via LocalStorage) ensuring only authorized personnel access the dashboard.
 
 ## 🛠️ Technology Stack
@@ -29,10 +32,8 @@ pharma-main/
 ├── login.html          # Authentication Page
 ├── analysis.html       # Main Dashboard & Analytics
 ├── import.html         # Drug Data Import Interface
-├── bot.html            # AI Chatbot Interface
 ├── main.js             # Core Application Logic
 ├── analysis.js         # Simulation & Charting Logic
-├── chatbot.js          # AI Bot Interaction Logic
 ├── auth-check.js       # Security & Session Management
 └── config.js           # API Keys (Not included in repo)
 ```
@@ -69,4 +70,3 @@ pharma-main/
 2.  **Import**: Navigate to "Drug Import" to upload sample data or add drugs manually.
 3.  **Simulate**: Click "Start Simulation" to run the serverless load balancing algorithm.
 4.  **Analyze**: View the "Analysis" dashboard to see how tasks were distributed and scored.
-5.  **Consult**: Use the "Bot" tab to ask AI specific questions about the results.
